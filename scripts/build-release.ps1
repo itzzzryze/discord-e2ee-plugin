@@ -22,6 +22,7 @@ try {
     }
     Copy-Item -LiteralPath (Join-Path $projectRoot "discordE2ee\index.tsx") -Destination (Join-Path $packageRoot "discordE2ee\index.tsx") -Force
     Copy-Item -LiteralPath (Join-Path $projectRoot "discordE2ee\protocol.ts") -Destination (Join-Path $packageRoot "discordE2ee\protocol.ts") -Force
+    Copy-Item -LiteralPath (Join-Path $projectRoot "discordE2ee\state.ts") -Destination (Join-Path $packageRoot "discordE2ee\state.ts") -Force
 
     Compress-Archive -LiteralPath $packageRoot -DestinationPath $archivePath -CompressionLevel Optimal -Force
     $hash = (Get-FileHash -Algorithm SHA256 -LiteralPath $archivePath).Hash.ToLowerInvariant()

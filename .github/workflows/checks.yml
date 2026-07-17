@@ -16,6 +16,6 @@ jobs:
         with:
           node-version: 24
           package-manager-cache: false
-      - run: node --test .\tests\protocol.test.ts
+      - run: node --test .\tests\protocol.test.ts .\tests\state.test.ts
       - shell: pwsh
         run: .\scripts\build-release.ps1

@@ -10,7 +10,8 @@ Keep this layout after extracting the release ZIP:
 discord-e2ee/
 ├── discordE2ee/
 │   ├── index.tsx
-│   └── protocol.ts
+│   ├── protocol.ts
+│   └── state.ts
 ├── INSTALL-GUIDE.md
 ├── Install-GUI.cmd
 ├── LICENSE
@@ -117,7 +118,11 @@ The normal folders are `%LOCALAPPDATA%\Discord` and `%LOCALAPPDATA%\DiscordCanar
 
 For a DM, right-click the other person and click `Set shared code`. Both people must save the same 12 digits for each other.
 
-For a group DM or server channel, right-click the channel and click `Set channel code`. Everyone using the plugin must save the same number there.
+For a group DM, right-click its icon and click `Set group code`. Everyone using the plugin must save the same number there.
+
+For a server, right-click the server icon and click `Set server code`. That code covers every text channel in the server. A code set directly on one channel takes priority over the server code.
+
+The lock button beside Gift and GIF opens the current code. The modal shows the saved digits and lets you save a replacement, remove the code, or pause it. Pausing stops encoding for your outgoing messages without deleting the code. Incoming messages still get restored.
 
 Use `Change or remove shared code` or `Change or remove channel code` when you want to replace or remove one.
 
@@ -144,6 +149,7 @@ Check for these files in the source checkout:
 ```text
 src\userplugins\discordE2ee\index.tsx
 src\userplugins\discordE2ee\protocol.ts
+src\userplugins\discordE2ee\state.ts
 ```
 
 Build that checkout again, then restart the Discord version where you installed it.
