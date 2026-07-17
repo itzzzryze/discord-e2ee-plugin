@@ -213,9 +213,10 @@ $destination = Join-Path $userPlugins "discordE2ee"
 New-Item -ItemType Directory -Path $destination -Force | Out-Null
 Copy-Item -LiteralPath (Join-Path $pluginSource "index.tsx") -Destination $destination -Force
 Copy-Item -LiteralPath (Join-Path $pluginSource "protocol.ts") -Destination $destination -Force
+Copy-Item -LiteralPath (Join-Path $pluginSource "state.ts") -Destination $destination -Force
 $legacyDestination = Join-Path $userPlugins "e2eeOverlay"
 if (Test-Path -LiteralPath $legacyDestination -PathType Container) {
-    foreach ($legacyFile in @("index.tsx", "protocol.ts")) {
+    foreach ($legacyFile in @("index.tsx", "protocol.ts", "state.ts")) {
         $legacyPath = Join-Path $legacyDestination $legacyFile
         if (Test-Path -LiteralPath $legacyPath -PathType Leaf) {
             Remove-Item -LiteralPath $legacyPath -Force

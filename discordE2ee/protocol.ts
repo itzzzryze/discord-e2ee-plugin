@@ -11,7 +11,7 @@ export const TRANSFORM_COUNT = 50;
 
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
-const HTTP_LINK_PATTERN = /\bhttps?:\/\/[^\s<>{}\[\]"']+/giu;
+const HTTP_LINK_PATTERN = /\bhttps?:\/\/[^\s<>{}[\]"']+/giu;
 const ENVELOPE_DATA_PATTERN = /^[A-Za-z0-9_-]+/u;
 const PROTOCOL_LABEL = "EquicordRotatingCodeOverlay/v1";
 type Bytes = Uint8Array<ArrayBuffer>;

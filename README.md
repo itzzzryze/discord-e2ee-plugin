@@ -9,6 +9,8 @@ The number is not a secure encryption key. Anyone who gets it can read the messa
 ## What works
 
 - Direct messages, group DMs, and server channels
+- One code for an entire server
+- A message-box button for viewing, changing, pausing, or removing the current code
 - Equicord and Vencord source builds
 - Discord Stable and Discord Canary on Windows
 - GIF picker posts
@@ -40,9 +42,24 @@ The full setup steps and CLI options are in [INSTALL-GUIDE.md](INSTALL-GUIDE.md)
 
 Remove the shared code when you want that DM to send normal text again.
 
-## Set up a group or channel
+## Use the message-box button
 
-Right-click the group DM or server channel and click `Set channel code`. Everyone who needs to read the messages must save the same number in that channel.
+The lock button sits on the right side of the message box beside Discord's Gift and GIF buttons. Click it to open the code used in the current place.
+
+The saved 12-digit code is shown in the input. You can replace it, remove it, or click `Pause here`. Pausing stops your outgoing messages from being encoded but keeps the code saved. Incoming messages still get restored. Click `Resume here` when you want to use it again.
+
+The button is green when encoding is on and yellow with a slash when it is paused.
+
+## Set up a group DM
+
+Right-click the group DM icon and click `Set group code`. Everyone who needs to read the messages must save the same number in that group.
+
+## Set up a server
+
+Right-click the server icon and click `Set server code`. The code applies to your outgoing messages in every text channel in that server. Other plugin users must save the same server code on their clients.
+
+Right-clicking one server channel still lets you set a channel-only code. A channel code takes priority over the server code.
+
 
 ## How messages are handled
 
@@ -55,7 +72,7 @@ HTTP and HTTPS links are copied after the encoded envelope. This leaves them ava
 Use Node.js 24 or newer:
 
 ```powershell
-node --test .\tests\protocol.test.ts
+node --test .\tests\protocol.test.ts .\tests\state.test.ts
 ```
 
 ## Equicord submission
