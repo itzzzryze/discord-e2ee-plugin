@@ -1,0 +1,6 @@
+dist/
+release/
+installa/
+*.zip
+*.sha256
+node_modules/

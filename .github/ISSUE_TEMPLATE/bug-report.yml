@@ -1,0 +1,35 @@
+name: Bug report
+description: Report a repeatable problem with the plugin or installer.
+title: "[bug] "
+body:
+  - type: dropdown
+    id: client
+    attributes:
+      label: Client
+      options:
+        - Equicord
+        - Vencord
+    validations:
+      required: true
+  - type: dropdown
+    id: discord
+    attributes:
+      label: Discord version
+      options:
+        - Stable
+        - Canary
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include the exact steps and any error text.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
