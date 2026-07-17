@@ -18,7 +18,7 @@ Web links stay visible in the raw Discord message so Discord can build the embed
 
 ## Install
 
-Download the ZIP from Releases and extract it. Double-click `Install-GUI.cmd`, choose an Equicord or Vencord source checkout, then choose Discord Stable, Canary, or both.
+Download the ZIP from the [public releases page](https://github.com/itzzzryze/discord-e2ee-releases/releases/latest) and extract it. Double-click `Install-GUI.cmd`, choose an Equicord or Vencord source checkout, then choose Discord Stable, Canary, or both.
 
 You can also run the installer from PowerShell:
 
