@@ -1,10 +1,11 @@
 # discord e2ee
 
-`e2ee` means end-to-end encoding in this project. It does not mean end-to-end encryption.
+`e2ee` means end to end encoding.
 
 The plugin scrambles Discord text with a shared 12-digit code. People using the same code see the original message. Everyone else sees an `EC3E:` string.
 
 The number is not a secure encryption key. Anyone who gets it can read the messages and make messages that the plugin accepts. Discord still receives message metadata and the scrambled text.
+discord is never able to read the unencrypted message on their end, making ur messages much more secure.
 
 ## What works
 
