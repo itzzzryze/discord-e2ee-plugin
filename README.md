@@ -18,19 +18,64 @@ The number is not a secure encryption key. Anyone who gets it can read the messa
 
 Web links stay visible in the raw Discord message so Discord can build the embed. The plugin still restores the full original message for people with the code. Uploaded files and stickers are blocked by default because their contents are not scrambled.
 
-## Install
+## Install from source on Windows
 
-Download the ZIP from the [public releases page](https://github.com/itzzzryze/discord-e2ee-releases/releases/latest) and extract it. Double-click `Install-GUI.cmd`, choose an Equicord or Vencord source checkout, then choose Discord Stable, Canary, or both.
+You need [Git for Windows](https://git-scm.com/download/win), [Node.js](https://nodejs.org/), pnpm, and an Equicord or Vencord source checkout. Open PowerShell without administrator rights and install pnpm:
 
-You can also run the installer from PowerShell:
+```powershell
+npm install -g pnpm
+```
+
+Clone Equicord or Vencord into your Documents folder. You only need one of them.
+
+Equicord:
+
+```powershell
+cd "$HOME\Documents"
+git clone https://github.com/Equicord/Equicord.git
+cd Equicord
+pnpm install --no-frozen-lockfile
+```
+
+Vencord:
+
+```powershell
+cd "$HOME\Documents"
+git clone https://github.com/Vendicated/Vencord.git
+cd Vencord
+pnpm install --no-frozen-lockfile
+```
+
+Clone this repo and start its installer:
+
+```powershell
+cd "$HOME\Documents"
+git clone https://github.com/itzzzryze/discord-e2ee.git
+cd "discord-e2ee"
+.\install.ps1 -Mode Gui
+```
+
+Choose the Equicord or Vencord folder you cloned. The next window lists the Discord Stable and Canary installations found on your computer. Check the ones you want and click `Continue`.
+
+The script copies `discordE2ee` into the client's `src\userplugins` folder, builds the client, and installs that build into the Discord versions you selected. When it finishes, close Discord completely, open it again, go to Plugins, and turn on `discord e2ee`.
+
+If PowerShell blocks local scripts, run this command from the repo folder:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1 -Mode Gui
+```
+
+The installer also has a text mode:
 
 ```powershell
 .\install.ps1 -Mode Cli
 ```
 
-Close Discord completely after the build finishes. Open it again, go to Plugins, and turn on `discord e2ee`.
+See [INSTALL-GUIDE.md](INSTALL-GUIDE.md) for path options, manual source copying, and fixes for common errors.
 
-The full setup steps and CLI options are in [INSTALL-GUIDE.md](INSTALL-GUIDE.md).
+## Install a release build
+
+Download the ZIP from the [public releases page](https://github.com/itzzzryze/discord-e2ee-releases/releases/latest), extract it, and double-click `Install-GUI.cmd`. The ZIP contains the same plugin source and installer stored in this repo.
 
 ## Set up a DM
 
@@ -60,20 +105,48 @@ Right-click the server icon and click `Set server code`. The code applies to you
 
 Right-clicking one server channel still lets you set a channel-only code. A channel code takes priority over the server code.
 
-
 ## How messages are handled
 
 The plugin derives a new pattern from the shared number every 30 seconds. It applies 50 reversible byte operations and adds a random nonce to each message. Old messages keep the time window needed to restore them.
 
 HTTP and HTTPS links are copied after the encoded envelope. This leaves them available to Discord's embed system. The original links also remain inside the scrambled payload.
 
-## Tests
+## Source files
+
+- `discordE2ee/index.tsx` contains the Discord menus, message-bar button, settings, message hooks, and saved-code handling.
+- `discordE2ee/protocol.ts` contains the reversible message format.
+- `discordE2ee/state.ts` chooses the code for a DM, group DM, channel, or server.
+- `install.ps1` copies, builds, and installs the plugin on Windows.
+- `tests` contains the protocol and code-selection tests.
+
+Everything needed to build the plugin is tracked in this repo. Generated ZIP files and client build output are left out.
+
+## Test the source
 
 Use Node.js 24 or newer:
 
 ```powershell
 node --test .\tests\protocol.test.ts .\tests\state.test.ts
 ```
+
+To check the plugin inside an Equicord or Vencord checkout, copy the `discordE2ee` folder into `src\userplugins\discordE2ee`, then run:
+
+```powershell
+pnpm build
+pnpm testTsc
+```
+
+## Update a source install
+
+Pull the current files and run the installer again:
+
+```powershell
+cd "$HOME\Documents\discord-e2ee"
+git pull
+.\install.ps1 -Mode Gui
+```
+
+Saved codes are stored by Equicord or Vencord. Reinstalling the plugin does not remove them.
 
 ## Equicord submission
 
