@@ -1,6 +1,6 @@
 # discord e2ee
 
-`e2ee` means end to end encoding.
+`e2ee` in this case means end to end encoding.
 
 The plugin scrambles Discord text with a shared 12-digit code. People using the same code see the original message. Everyone else sees an `EC3E:` string.
 
