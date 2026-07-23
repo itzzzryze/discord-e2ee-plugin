@@ -149,10 +149,6 @@ git pull
 
 Saved codes are stored by Equicord or Vencord. Reinstalling the plugin does not remove them.
 
-## Equicord submission
-
-The files in `discordE2ee` are ready for local Equicord and Vencord builds. Read [EQUICORD-SUBMISSION.md](EQUICORD-SUBMISSION.md) before opening an official Equicord pull request.
-
 ## License
 
 GPL-3.0-or-later. See [LICENSE](LICENSE).
